@@ -1,0 +1,8 @@
+{
+	"scripts": {
+    "sass": "sass --watch src/styles/sass/main.scss:src/styles/css/index.css --no-source-map"
+  },
+	"devDependencies": {
+		"sass": "^1.70.0"
+	}
+}
