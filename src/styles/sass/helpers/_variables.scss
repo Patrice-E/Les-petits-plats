@@ -1,0 +1,20 @@
+// Colors
+$backgroundColor: #ededed;
+$yellow: #ffd15b;
+
+// Media breakpoints
+$medium: 768px;
+$large: 1024px;
+$huge: 1200px;
+// Media queries
+$breakpoints: (
+  'medium': (
+    min-width: $medium,
+  ),
+  'large': (
+    min-width: $large,
+  ),
+  'huge': (
+    min-width: $huge,
+  ),
+);

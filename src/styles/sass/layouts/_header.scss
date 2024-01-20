@@ -1,0 +1,30 @@
+.header {
+  background-image: url('../../../../src/assets/banner.jpg');
+  background-size: cover;
+  background-position: center right;
+  text-align: center;
+  position: relative;
+
+  &__logo {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+  }
+
+  p {
+    margin: 0 20% 29.42px;
+    padding: 132px 0 0;
+    color: $yellow;
+    font-size: clamp(24px, 4vw, 44px);
+  }
+
+  .search {
+    font-family: Manrope, sans-serif;
+    width: 80%;
+    height: 72px;
+    padding: 0 35px;
+    border: none;
+    border-radius: 11px;
+    margin-bottom: 132px;
+  }
+}
