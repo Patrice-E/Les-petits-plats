@@ -27,10 +27,6 @@ ul {
   position: relative;
 }
 
-.hidden {
-  display: none;
-}
-
 .header {
   background-image: url("../../../../src/assets/banner.jpg");
   background-size: cover;
@@ -61,6 +57,7 @@ ul {
 
 .nbrecipes {
   position: absolute;
+  top: 1rem;
   right: 0;
   font-size: 21px;
   font-style: normal;
@@ -79,6 +76,7 @@ ul {
 }
 
 .filter {
+  width: 195px;
   max-height: 324px;
   overflow: hidden;
   background-color: white;
@@ -104,6 +102,9 @@ ul {
   display: flex;
   flex-direction: column;
   gap: 13px;
+}
+.filter__showlist.hidden {
+  display: none;
 }
 .filter__showlist input {
   min-height: 36px;

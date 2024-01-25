@@ -11,7 +11,7 @@ const Select = (title, array) => {
           <img src="./src/assets/icons/arrowdown.svg" alt="" />
         </span>
       </button>
-      <div class="filter__showlist">
+      <div class="filter__showlist hidden">
         <input type="text" name=${title} id=${title}>
         <div class="filter__items"></div>
         <ul>${list}</ul>
