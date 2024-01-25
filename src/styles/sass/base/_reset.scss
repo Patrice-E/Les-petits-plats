@@ -6,11 +6,27 @@
 }
 
 body {
-  background-color: $backgroundColor;
+  background-color: $lightgray;
+  color: $black;
   font-family: Anton, sans-serif;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  font-family: Manrope, sans-serif;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
 }
 
 .container {
   max-width: $huge;
-  margin: 0 auto;
+  margin: 21px auto;
+  position: relative;
+}
+
+.hidden {
+  display: none;
 }

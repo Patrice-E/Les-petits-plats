@@ -7,12 +7,28 @@
 
 body {
   background-color: #ededed;
+  color: #1b1b1b;
   font-family: Anton, sans-serif;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  font-family: Manrope, sans-serif;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
 }
 
 .container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 21px auto;
+  position: relative;
+}
+
+.hidden {
+  display: none;
 }
 
 .header {
@@ -41,4 +57,58 @@ body {
   border: none;
   border-radius: 11px;
   margin-bottom: 132px;
+}
+
+.nbrecipes {
+  position: absolute;
+  right: 0;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.filters__selects {
+  display: flex;
+  gap: 65px;
+}
+
+.filter {
+  max-height: 324px;
+  overflow: hidden;
+  background-color: white;
+  padding: 17px 16px;
+  border-radius: 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.filter button {
+  border: none;
+  background-color: transparent;
+  color: #1b1b1b;
+  font-family: Manrope;
+  font-size: 16px;
+  display: flex;
+  gap: 63px;
+}
+.filter .arrow {
+  margin-left: auto;
+}
+.filter__showlist {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.filter__showlist input {
+  min-height: 36px;
+  background-image: url("../../../../src/assets/icons/search.svg");
+  background-repeat: no-repeat;
+  background-position: 95% 50%;
+  border: 1px solid #c6c6c6;
 }
