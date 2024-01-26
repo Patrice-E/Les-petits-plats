@@ -66,6 +66,9 @@ ul {
   color: #7a7a7a;
   font-size: 16px;
 }
+.header .searchbar input:focus {
+  outline: none;
+}
 .header .searchbar__glass {
   width: 51px;
   height: 52px;
@@ -80,6 +83,7 @@ ul {
   position: absolute;
   top: 1rem;
   right: 0;
+  font-family: Anton, sans-serif;
   font-size: 21px;
   font-style: normal;
   font-weight: 400;
@@ -97,6 +101,11 @@ ul {
 }
 
 .filter {
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+}
+.filter__btn {
   width: 195px;
   max-height: 324px;
   overflow: hidden;
@@ -107,7 +116,7 @@ ul {
   flex-direction: column;
   gap: 15px;
 }
-.filter button {
+.filter__btn button {
   border: none;
   background-color: transparent;
   color: #1b1b1b;
@@ -116,21 +125,41 @@ ul {
   display: flex;
   gap: 63px;
 }
-.filter .arrow {
+.filter__btn .arrow {
   margin-left: auto;
 }
-.filter__showlist {
+.filter__btn .showlist {
   display: flex;
   flex-direction: column;
   gap: 13px;
 }
-.filter__showlist.hidden {
+.filter__btn .showlist.hidden {
   display: none;
 }
-.filter__showlist input {
+.filter__btn .showlist input {
   min-height: 36px;
   background-image: url("../../../../src/assets/icons/search.svg");
   background-repeat: no-repeat;
   background-position: 95% 50%;
   border: 1px solid #c6c6c6;
+}
+.filter__btn .showlist input:focus {
+  outline: none;
+}
+.filter__selected {
+  display: flex;
+  flex-direction: column;
+}
+.filter__selected li {
+  padding: 17px 18px;
+  background-color: #ffd15b;
+  border-radius: 10px;
+  display: flex;
+}
+.filter__selected li span {
+  flex: 1;
+}
+.filter__selected li button {
+  background-color: transparent;
+  border: none;
 }

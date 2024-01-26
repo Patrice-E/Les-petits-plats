@@ -22,6 +22,7 @@ async function init() {
     });
   });
   components = [...new Set(components)];
+  devices = [...new Set(devices)];
   ustensils = [...new Set(ustensils)];
 
   // Affichage des filtres
