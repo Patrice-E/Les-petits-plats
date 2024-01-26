@@ -8,13 +8,12 @@
 body {
   background-color: #ededed;
   color: #1b1b1b;
-  font-family: Anton, sans-serif;
+  font-family: Manrope, sans-serif;
 }
 
 ul {
   list-style: none;
   padding: 0;
-  font-family: Manrope, sans-serif;
   font-size: 14px;
   display: flex;
   flex-direction: column;
@@ -28,10 +27,15 @@ ul {
 }
 
 .header {
+  min-height: 667px;
   background-image: url("../../../../src/assets/banner.jpg");
   background-size: cover;
   background-position: center right;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 29.42px;
   position: relative;
 }
 .header__logo {
@@ -39,20 +43,37 @@ ul {
   top: 5%;
   left: 5%;
 }
-.header p {
-  margin: 0 20% 29.42px;
-  padding: 132px 0 0;
+.header h2 {
+  margin: 0 15%;
   color: #ffd15b;
+  font-family: Anton, sans-serif;
   font-size: clamp(24px, 4vw, 44px);
+  text-align: center;
 }
-.header .search {
-  font-family: Manrope, sans-serif;
-  width: 80%;
+.header .searchbar {
+  background-color: white;
+  width: 70%;
   height: 72px;
-  padding: 0 35px;
-  border: none;
+  padding: 10px 10px 10px 35px;
   border-radius: 11px;
-  margin-bottom: 132px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.header .searchbar input {
+  flex: 1;
+  border: none;
+  color: #7a7a7a;
+  font-size: 16px;
+}
+.header .searchbar__glass {
+  width: 51px;
+  height: 52px;
+  background-color: #1b1b1b;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .nbrecipes {

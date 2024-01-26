@@ -22,17 +22,24 @@
   </head>
   <body>
     <header class="header">
-      <!-- <img src="./src/assets/banner.jpg" alt="" class="header__banner" /> -->
-      <img src="./src/assets/logo.svg" alt="" class="header__logo" />
-      <p>
+      <img
+        src="./src/assets/logo.svg"
+        alt="Les petits plats"
+        class="header__logo"
+      />
+      <h2>
         CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN, SIMPLES ET
         DÉLICIEUSES
-      </p>
-      <input
-        type="text"
-        class="search"
-        placeholder="Rechercher une recette, un ingrédient, ..."
-      />
+      </h2>
+      <div class="searchbar">
+        <input
+          type="search"
+          placeholder="Rechercher une recette, un ingrédient, ..."
+        />
+        <div class="searchbar__glass">
+          <img src="./src/assets/icons/whitesearch.svg" alt="" />
+        </div>
+      </div>
     </header>
     <main class="container">
       <span class="nbrecipes"></span>

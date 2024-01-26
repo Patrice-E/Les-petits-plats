@@ -1,8 +1,13 @@
 .header {
+  min-height: 667px;
   background-image: url('../../../../src/assets/banner.jpg');
   background-size: cover;
   background-position: center right;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 29.42px;
   position: relative;
 
   &__logo {
@@ -11,20 +16,39 @@
     left: 5%;
   }
 
-  p {
-    margin: 0 20% 29.42px;
-    padding: 132px 0 0;
+  h2 {
+    margin: 0 15%;
     color: $yellow;
+    font-family: Anton, sans-serif;
     font-size: clamp(24px, 4vw, 44px);
+    text-align: center;
   }
 
-  .search {
-    font-family: Manrope, sans-serif;
-    width: 80%;
+  .searchbar {
+    background-color: white;
+    width: 70%;
     height: 72px;
-    padding: 0 35px;
-    border: none;
+    padding: 10px 10px 10px 35px;
     border-radius: 11px;
-    margin-bottom: 132px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+
+    input {
+      flex: 1;
+      border: none;
+      color: $darkgray;
+      font-size: 16px;
+    }
+
+    &__glass {
+      width: 51px;
+      height: 52px;
+      background-color: $black;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }
