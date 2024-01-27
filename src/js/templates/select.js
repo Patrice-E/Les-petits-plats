@@ -1,10 +1,10 @@
-const Select = (title, arrayOfItems, arrayOfSelected = []) => {
+const Select = (title, arrayOfItems, arrayOfSelectedItems = []) => {
   let list = '';
   arrayOfItems.map((arr) => {
     list += `<li>${arr}</li>`;
   });
   let selected = '';
-  arrayOfSelected.map((arr) => {
+  arrayOfSelectedItems.map((arr) => {
     selected += `
       <li>
         <span>${arr}</span>
