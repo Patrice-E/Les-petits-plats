@@ -1,13 +1,16 @@
 const Select = (title, arrayOfItems, arrayOfSelectedItems = []) => {
+  const filteredArray = arrayOfItems.filter(
+    (items) => !arrayOfSelectedItems.includes(items)
+  );
   let list = '';
-  arrayOfItems.map((arr) => {
-    list += `<li>${arr}</li>`;
+  filteredArray.map((item) => {
+    list += `<li>${item}</li>`;
   });
   let selected = '';
-  arrayOfSelectedItems.map((arr) => {
+  arrayOfSelectedItems.map((selectItem) => {
     selected += `
       <li>
-        <span>${arr}</span>
+        <span>${selectItem}</span>
         <button>
           <img src="./src/assets/icons/cancel.svg" alt=""/>
         </button>
@@ -24,6 +27,12 @@ const Select = (title, arrayOfItems, arrayOfSelectedItems = []) => {
           </span>
         </button>
         <div class="showlist hidden">
+          <button>
+            <span>${title}</span>
+            <span class="arrow">
+              <img src="./src/assets/icons/arrowup.svg" alt="" />
+            </span>
+          </button>
           <input type="search" name=${title} id=${title}>
           <div class="filter__items"></div>
           <ul>${list}</ul>

@@ -11,8 +11,7 @@
 
 .filters {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  gap: 65px;
 
   &__selects {
     display: flex;
@@ -27,14 +26,9 @@
 
   &__btn {
     width: 195px;
-    max-height: 324px;
-    overflow: hidden;
-    background-color: white;
-    padding: 17px 16px;
-    border-radius: 11px;
-    display: flex;
-    flex-direction: column;
+    @extend %bgselect;
     gap: 15px;
+    position: relative;
 
     button {
       border: none;
@@ -51,7 +45,13 @@
     }
 
     .showlist {
-      display: flex;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      max-height: 324px;
+      overflow: hidden;
+      @extend %bgselect;
       flex-direction: column;
       gap: 13px;
 

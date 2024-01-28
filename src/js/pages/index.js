@@ -3,7 +3,7 @@ import { Select } from '../templates/select.js';
 import { useFetch } from '../utils/useFetch.js';
 
 const nbRecipes = document.querySelector('.nbrecipes');
-const filterSelects = document.querySelector('.filters__selects');
+const filterSelects = document.querySelector('.filters');
 const recipesCards = document.querySelector('.cards');
 
 async function init() {
@@ -30,7 +30,9 @@ async function init() {
   // Mise à jour du total des recettes
   nbRecipes.innerHTML = `${recipes.length} recettes`;
   // Affichage des filtres
-  filterSelects.innerHTML = Select('Ingrédients', components);
+  filterSelects.innerHTML += Select('Ingrédients', components, [
+    'Lait de coco',
+  ]);
   filterSelects.innerHTML += Select('Appareils', devices);
   filterSelects.innerHTML += Select('Ustensiles', ustensils);
   // Affichage des plats
