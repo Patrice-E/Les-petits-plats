@@ -1,6 +1,5 @@
 .filter__btn .showlist, .filter__btn {
   background-color: white;
-  padding: 17px 16px;
   border-radius: 11px;
   display: flex;
   flex-direction: column;
@@ -25,7 +24,6 @@ ul {
   font-size: 14px;
   display: flex;
   flex-direction: column;
-  gap: 13px;
 }
 
 .container {
@@ -184,10 +182,12 @@ ul {
 }
 .filter__btn {
   width: 195px;
+  padding: 17px 16px;
   gap: 15px;
   position: relative;
 }
 .filter__btn button {
+  padding: 17px 16px 0;
   border: none;
   background-color: transparent;
   color: #1b1b1b;
@@ -213,6 +213,7 @@ ul {
   display: none;
 }
 .filter__btn .showlist input {
+  margin: 0 16px;
   min-height: 36px;
   background-image: url("../../../../src/assets/icons/search.svg");
   background-repeat: no-repeat;
@@ -221,6 +222,17 @@ ul {
 }
 .filter__btn .showlist input:focus {
   outline: none;
+}
+.filter__btn .showlist__items {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+.filter__btn .showlist__items li {
+  padding: 9px 16px;
+}
+.filter__btn .showlist__items .selected {
+  background: #ffd15b;
 }
 .filter__selected {
   display: flex;

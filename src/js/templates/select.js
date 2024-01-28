@@ -1,10 +1,14 @@
 const Select = (title, arrayOfItems, arrayOfSelectedItems = []) => {
-  const filteredArray = arrayOfItems.filter(
+  const notFilteredArray = arrayOfItems.filter(
     (items) => !arrayOfSelectedItems.includes(items)
   );
-  let list = '';
-  filteredArray.map((item) => {
-    list += `<li>${item}</li>`;
+  let listSelected = '';
+  arrayOfSelectedItems.map((item) => {
+    listSelected += `<li class="selected">${item}</li>`;
+  });
+  let listFilters = '';
+  notFilteredArray.map((item) => {
+    listFilters += `<li>${item}</li>`;
   });
   let selected = '';
   arrayOfSelectedItems.map((selectItem) => {
@@ -26,7 +30,7 @@ const Select = (title, arrayOfItems, arrayOfSelectedItems = []) => {
             <img src="./src/assets/icons/arrowdown.svg" alt="" />
           </span>
         </button>
-        <div class="showlist hidden">
+        <div class="showlist ">
           <button>
             <span>${title}</span>
             <span class="arrow">
@@ -34,8 +38,10 @@ const Select = (title, arrayOfItems, arrayOfSelectedItems = []) => {
             </span>
           </button>
           <input type="search" name=${title} id=${title}>
-          <div class="filter__items"></div>
-          <ul>${list}</ul>
+          <div class="showlist__items">
+            <ul>${listSelected}</ul>
+            <ul>${listFilters}</ul>
+          </div>
         </div>
       </div>
       <div class="filter__selected">
