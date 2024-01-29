@@ -1,3 +1,11 @@
+const handleClick = (e) => {
+  const btnInfo = e.currentTarget.dataset.btn;
+  const showList = document.querySelector(
+    `.showlist[data-showlist="${btnInfo}"]`
+  );
+  showList.classList.toggle('hidden');
+};
+
 const Select = (title, arrayOfItems, arrayOfSelectedItems = []) => {
   const notFilteredArray = arrayOfItems.filter(
     (items) => !arrayOfSelectedItems.includes(items)
@@ -24,14 +32,14 @@ const Select = (title, arrayOfItems, arrayOfSelectedItems = []) => {
   return `
     <div class="filter">
       <div class="filter__btn">
-        <button>
+        <button data-btn=${title}>
           <span>${title}</span>
           <span class="arrow">
             <img src="./src/assets/icons/arrowdown.svg" alt="" />
           </span>
         </button>
-        <div class="showlist ">
-          <button>
+        <div class="showlist hidden" data-showlist=${title}>
+          <button data-btn=${title}>
             <span>${title}</span>
             <span class="arrow">
               <img src="./src/assets/icons/arrowup.svg" alt="" />
@@ -51,4 +59,4 @@ const Select = (title, arrayOfItems, arrayOfSelectedItems = []) => {
   `;
 };
 
-export { Select };
+export { Select, handleClick };

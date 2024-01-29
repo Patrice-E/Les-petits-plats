@@ -182,12 +182,11 @@ ul {
 }
 .filter__btn {
   width: 195px;
-  padding: 17px 16px;
   gap: 15px;
   position: relative;
 }
 .filter__btn button {
-  padding: 17px 16px 0;
+  padding: 17px 16px;
   border: none;
   background-color: transparent;
   color: #1b1b1b;
@@ -204,16 +203,16 @@ ul {
   top: 0;
   left: 0;
   z-index: 2;
+  width: 195px;
   max-height: 324px;
   overflow: hidden;
   flex-direction: column;
-  gap: 13px;
 }
 .filter__btn .showlist.hidden {
   display: none;
 }
 .filter__btn .showlist input {
-  margin: 0 16px;
+  margin: 0 16px 17px;
   min-height: 36px;
   background-image: url("../../../../src/assets/icons/search.svg");
   background-repeat: no-repeat;
@@ -226,7 +225,7 @@ ul {
 .filter__btn .showlist__items {
   display: flex;
   flex-direction: column;
-  gap: 17px;
+  gap: 7px;
 }
 .filter__btn .showlist__items li {
   padding: 9px 16px;

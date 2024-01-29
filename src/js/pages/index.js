@@ -1,5 +1,5 @@
 import { ListofRecipes } from '../templates/recipes.js';
-import { Select } from '../templates/select.js';
+import { Select, handleClick } from '../templates/select.js';
 import { useFetch } from '../utils/useFetch.js';
 
 const nbRecipes = document.querySelector('.nbrecipes');
@@ -35,6 +35,11 @@ async function init() {
   ]);
   filterSelects.innerHTML += Select('Appareils', devices);
   filterSelects.innerHTML += Select('Ustensiles', ustensils);
+  // Activation des boutons de filtres
+  const btns = document.querySelectorAll('button[data-btn]');
+  btns.forEach((btn) => {
+    btn.addEventListener('click', handleClick);
+  });
   // Affichage des plats
   recipesCards.innerHTML = ListofRecipes(recipes);
 }

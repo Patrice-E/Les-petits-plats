@@ -27,12 +27,11 @@
   &__btn {
     width: 195px;
     @extend %bgselect;
-    padding: 17px 16px;
     gap: 15px;
     position: relative;
 
     button {
-      padding: 17px 16px 0;
+      padding: 17px 16px;
       border: none;
       background-color: transparent;
       color: $black;
@@ -51,18 +50,18 @@
       top: 0;
       left: 0;
       z-index: 2;
+      width: 195px;
       max-height: 324px;
       overflow: hidden;
       @extend %bgselect;
       flex-direction: column;
-      gap: 13px;
 
       &.hidden {
         display: none;
       }
 
       input {
-        margin: 0 16px;
+        margin: 0 16px 17px;
         min-height: 36px;
         background-image: url('../../../../src/assets/icons/search.svg');
         background-repeat: no-repeat;
@@ -76,7 +75,7 @@
       &__items {
         display: flex;
         flex-direction: column;
-        gap: 17px;
+        gap: 7px;
 
         & li {
           padding: 9px 16px;
