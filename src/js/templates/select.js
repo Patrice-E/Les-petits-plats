@@ -1,12 +1,4 @@
-const handleClick = (e) => {
-  const btnInfo = e.currentTarget.dataset.btn;
-  const showList = document.querySelector(
-    `.showlist[data-showlist="${btnInfo}"]`
-  );
-  showList.classList.toggle('hidden');
-};
-
-const Select = (title, arrayOfItems, arrayOfSelectedItems = []) => {
+const Select = (title, arrayOfItems, arrayOfSelectedItems) => {
   const notFilteredArray = arrayOfItems.filter(
     (items) => !arrayOfSelectedItems.includes(items)
   );
@@ -16,7 +8,7 @@ const Select = (title, arrayOfItems, arrayOfSelectedItems = []) => {
   });
   let listFilters = '';
   notFilteredArray.map((item) => {
-    listFilters += `<li class="selectable">${item}</li>`;
+    listFilters += `<li class="selectable" data-cat=${title}>${item}</li>`;
   });
   let selected = '';
   arrayOfSelectedItems.map((selectItem) => {
@@ -59,4 +51,4 @@ const Select = (title, arrayOfItems, arrayOfSelectedItems = []) => {
   `;
 };
 
-export { Select, handleClick };
+export { Select };
