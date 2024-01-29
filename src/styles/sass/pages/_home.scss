@@ -103,7 +103,8 @@
       span {
         flex: 1;
       }
-      button {
+      .btn-selected {
+        padding: 0;
         background-color: transparent;
         border: none;
       }

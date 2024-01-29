@@ -249,7 +249,8 @@ ul {
 .filter__selected li span {
   flex: 1;
 }
-.filter__selected li button {
+.filter__selected li .btn-selected {
+  padding: 0;
   background-color: transparent;
   border: none;
 }

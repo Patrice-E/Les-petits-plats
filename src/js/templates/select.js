@@ -15,7 +15,7 @@ const Select = (title, arrayOfItems, arrayOfSelectedItems) => {
     selected += `
       <li>
         <span>${selectItem}</span>
-        <button>
+        <button class="btn-selected" data-cat=${title}>
           <img src="./src/assets/icons/cancel.svg" alt=""/>
         </button>
       </li>`;

@@ -32,6 +32,11 @@ const renderFilters = () => {
   filters.forEach((filter) => {
     filter.addEventListener('click', handleSelectFilter);
   });
+  // Activation du bouton suppression d'un filtre
+  const selectedFilters = document.querySelectorAll('.btn-selected');
+  selectedFilters.forEach((select) => {
+    select.addEventListener('click', handleDeleteFilter);
+  });
 };
 const handleSelectBtn = (e) => {
   const btnInfo = e.currentTarget.dataset.btn;
@@ -52,6 +57,23 @@ const handleSelectFilter = (e) => {
       break;
     case 'Ustensiles':
       selectedUstensils.push(name);
+      break;
+  }
+  renderFilters();
+};
+const handleDeleteFilter = (e) => {
+  const element = e.currentTarget;
+  const category = element.dataset.cat;
+  const value = element.previousElementSibling.textContent;
+  switch (category) {
+    case 'Ingrédients':
+      selectedComponents = selectedComponents.filter((item) => item !== value);
+      break;
+    case 'Appareils':
+      selectedDevices = selectedDevices.filter((item) => item !== value);
+      break;
+    case 'Ustensiles':
+      selectedUstensils = selectedUstensils.filter((item) => item !== value);
       break;
   }
   renderFilters();
