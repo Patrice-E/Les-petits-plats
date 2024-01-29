@@ -16,7 +16,7 @@ const Select = (title, arrayOfItems, arrayOfSelectedItems = []) => {
   });
   let listFilters = '';
   notFilteredArray.map((item) => {
-    listFilters += `<li>${item}</li>`;
+    listFilters += `<li class="selectable">${item}</li>`;
   });
   let selected = '';
   arrayOfSelectedItems.map((selectItem) => {

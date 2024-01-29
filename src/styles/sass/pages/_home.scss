@@ -80,6 +80,9 @@
         & li {
           padding: 9px 16px;
         }
+        & .selectable:hover {
+          background-color: $yellow;
+        }
         & .selected {
           background: $yellow;
         }

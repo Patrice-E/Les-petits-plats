@@ -230,6 +230,9 @@ ul {
 .filter__btn .showlist__items li {
   padding: 9px 16px;
 }
+.filter__btn .showlist__items .selectable:hover {
+  background-color: #ffd15b;
+}
 .filter__btn .showlist__items .selected {
   background: #ffd15b;
 }
