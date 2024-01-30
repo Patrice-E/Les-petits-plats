@@ -1,4 +1,5 @@
 .filter__btn .showlist, .filter__btn {
+  width: 195px;
   background-color: white;
   border-radius: 11px;
   display: flex;
@@ -181,7 +182,6 @@ ul {
   gap: 21px;
 }
 .filter__btn {
-  width: 195px;
   gap: 15px;
   position: relative;
 }
@@ -203,7 +203,6 @@ ul {
   top: 0;
   left: 0;
   z-index: 2;
-  width: 195px;
   max-height: 324px;
   overflow: hidden;
   flex-direction: column;
