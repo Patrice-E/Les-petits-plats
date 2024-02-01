@@ -1,18 +1,20 @@
 const nbTotalRecipes = document.querySelector('.nbrecipes');
 const recipesCards = document.querySelector('.cards');
 
-const listOfRecipes = (recipes) => {
+const renderRecipes = (recipes) => {
   // Mise à jour du total des recettes dans le DOM
   const nbRecipes = recipes.length;
   if (nbRecipes) {
     nbTotalRecipes.innerHTML = `${recipes.length} recettes`;
   } else {
-    return `
+    recipesCards.innerHTML = `
       <p>Aucune recette ne contient ‘XXX ’ vous pouvez chercher «
 tarte aux pommes », « poisson », etc.</p>
     `;
+    return;
   }
 
+  // Mise à jour des recettes affichées
   let recipe = {};
   let card = '';
   for (let index = 0; index < nbRecipes; index++) {
@@ -54,4 +56,4 @@ tarte aux pommes », « poisson », etc.</p>
   recipesCards.innerHTML = card;
 };
 
-export { listOfRecipes };
+export { renderRecipes };

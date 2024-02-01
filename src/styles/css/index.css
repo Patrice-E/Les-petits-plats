@@ -250,6 +250,7 @@ ul {
   flex: 1;
 }
 .filter__selected li .btn-selected {
+  cursor: pointer;
   padding: 0;
   background-color: transparent;
   border: none;

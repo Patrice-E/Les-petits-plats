@@ -3,9 +3,11 @@ import {
   selectableDevices,
   selectableUstensils,
 } from '../pages/index.js';
+import { useFetch } from './useFetch.js';
 import { handleSelectFilter } from './useFilter.js';
 
 const mainSearch = document.querySelector('#mainsearch');
+const { recipes } = await useFetch('./src/datas/recipes.json');
 
 const handleMainSearch = (e) => {
   const target = e.currentTarget;
@@ -23,7 +25,6 @@ const formatListFilters = (list, cat) => {
 const handleFilterSearch = (e) => {
   const element = e.currentTarget;
   const value = element.value;
-  console.log(value);
   const category = element.name;
   const selectableList = document.querySelector(
     `.showlist[data-showlist="${category}"] .selectable-items`

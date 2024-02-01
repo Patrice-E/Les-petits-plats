@@ -1,30 +1,10 @@
-import {
-  selectableComponents,
-  selectableDevices,
-  selectableUstensils,
-} from '../pages/index.js';
-
 const Select = (title, arrayOfItems, arrayOfSelectedItems) => {
-  const notFilteredArray = arrayOfItems.filter(
-    (items) => !arrayOfSelectedItems.data.includes(items)
-  );
-  switch (title) {
-    case 'Ingrédients':
-      selectableComponents.data = notFilteredArray;
-      break;
-    case 'Appareils':
-      selectableDevices.data = notFilteredArray;
-      break;
-    case 'Ustensiles':
-      selectableUstensils.data = notFilteredArray;
-      break;
-  }
   let listSelected = '';
   arrayOfSelectedItems.data.map((item) => {
     listSelected += `<li class="selected">${item}</li>`;
   });
   let listFilters = '';
-  notFilteredArray.map((item) => {
+  arrayOfItems.data.map((item) => {
     listFilters += `<li class="selectable" data-cat=${title}>${item}</li>`;
   });
   let selected = '';
