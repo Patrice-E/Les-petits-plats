@@ -1,5 +1,17 @@
-const ListofRecipes = (recipes) => {
-  const nbRecipes = recipes.length > 10 ? 10 : nbRecipes.length;
+const nbTotalRecipes = document.querySelector('.nbrecipes');
+const recipesCards = document.querySelector('.cards');
+
+const listOfRecipes = (recipes) => {
+  // Mise à jour du total des recettes dans le DOM
+  const nbRecipes = recipes.length;
+  if (nbRecipes) {
+    nbTotalRecipes.innerHTML = `${recipes.length} recettes`;
+  } else {
+    return `
+      <p>Aucune recette ne contient ‘XXX ’ vous pouvez chercher «
+tarte aux pommes », « poisson », etc.</p>
+    `;
+  }
 
   let recipe = {};
   let card = '';
@@ -10,10 +22,12 @@ const ListofRecipes = (recipes) => {
     ingredients.map((i) => {
       const quantity = i.quantity || '';
       let unit = i.unit || '';
-      if (unit.length > 7) {
-        unit = ` ${unit}`;
-      } else if (unit.length > 3) {
-        unit = unit.charAt(0);
+      if (unit.length > 3) {
+        if (unit == 'grammes') {
+          unit = 'g';
+        } else {
+          unit = ' ' + unit;
+        }
       }
       components += `
         <div class="components__item">
@@ -36,7 +50,8 @@ const ListofRecipes = (recipes) => {
       </article>
     `;
   }
-  return card;
+
+  recipesCards.innerHTML = card;
 };
 
-export { ListofRecipes };
+export { listOfRecipes };

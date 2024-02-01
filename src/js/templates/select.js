@@ -1,9 +1,26 @@
+import {
+  selectableComponents,
+  selectableDevices,
+  selectableUstensils,
+} from '../pages/index.js';
+
 const Select = (title, arrayOfItems, arrayOfSelectedItems) => {
   const notFilteredArray = arrayOfItems.filter(
-    (items) => !arrayOfSelectedItems.includes(items)
+    (items) => !arrayOfSelectedItems.data.includes(items)
   );
+  switch (title) {
+    case 'Ingrédients':
+      selectableComponents.data = notFilteredArray;
+      break;
+    case 'Appareils':
+      selectableDevices.data = notFilteredArray;
+      break;
+    case 'Ustensiles':
+      selectableUstensils.data = notFilteredArray;
+      break;
+  }
   let listSelected = '';
-  arrayOfSelectedItems.map((item) => {
+  arrayOfSelectedItems.data.map((item) => {
     listSelected += `<li class="selected">${item}</li>`;
   });
   let listFilters = '';
@@ -11,7 +28,7 @@ const Select = (title, arrayOfItems, arrayOfSelectedItems) => {
     listFilters += `<li class="selectable" data-cat=${title}>${item}</li>`;
   });
   let selected = '';
-  arrayOfSelectedItems.map((selectItem) => {
+  arrayOfSelectedItems.data.map((selectItem) => {
     selected += `
       <li>
         <span>${selectItem}</span>
@@ -37,10 +54,10 @@ const Select = (title, arrayOfItems, arrayOfSelectedItems) => {
               <img src="./src/assets/icons/arrowup.svg" alt="" />
             </span>
           </button>
-          <input type="search" name=${title} id=${title}>
+          <input type="search" name=${title} id=${title} class="filtersearch">
           <div class="showlist__items">
             <ul>${listSelected}</ul>
-            <ul>${listFilters}</ul>
+            <ul class= "selectable-items">${listFilters}</ul>
           </div>
         </div>
       </div>

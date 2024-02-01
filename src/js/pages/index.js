@@ -1,83 +1,19 @@
-import { ListofRecipes } from '../templates/recipes.js';
-import { Select } from '../templates/select.js';
+import GlobalArray from '../models/GlobalArray.js';
+import { listOfRecipes } from '../templates/recipes.js';
 import { useFetch } from '../utils/useFetch.js';
+import { renderFilters } from '../utils/useFilter.js';
+import { startToListen } from '../utils/useSearch.js';
 
-// DOM
-const nbRecipes = document.querySelector('.nbrecipes');
-const filterSelects = document.querySelector('.filters');
-const recipesCards = document.querySelector('.cards');
 // Déclaration des variables
 let components = [];
-let selectedComponents = [];
+let selectedComponents = new GlobalArray();
+let selectableComponents = new GlobalArray();
 let devices = [];
-let selectedDevices = [];
+let selectedDevices = new GlobalArray();
+let selectableDevices = new GlobalArray();
 let ustensils = [];
-let selectedUstensils = [];
-// Déclaration des fonctions
-const renderFilters = () => {
-  filterSelects.innerHTML = Select(
-    'Ingrédients',
-    components,
-    selectedComponents
-  );
-  filterSelects.innerHTML += Select('Appareils', devices, selectedDevices);
-  filterSelects.innerHTML += Select('Ustensiles', ustensils, selectedUstensils);
-  // Activation des boutons de filtres
-  const btns = document.querySelectorAll('button[data-btn]');
-  btns.forEach((btn) => {
-    btn.addEventListener('click', handleSelectBtn);
-  });
-  // Activation de la sélection des filtres
-  const filters = document.querySelectorAll('.selectable');
-  filters.forEach((filter) => {
-    filter.addEventListener('click', handleSelectFilter);
-  });
-  // Activation du bouton suppression d'un filtre
-  const selectedFilters = document.querySelectorAll('.btn-selected');
-  selectedFilters.forEach((select) => {
-    select.addEventListener('click', handleDeleteFilter);
-  });
-};
-const handleSelectBtn = (e) => {
-  const btnInfo = e.currentTarget.dataset.btn;
-  const showList = document.querySelector(
-    `.showlist[data-showlist="${btnInfo}"]`
-  );
-  showList.classList.toggle('hidden');
-};
-const handleSelectFilter = (e) => {
-  const category = e.currentTarget.dataset.cat;
-  const name = e.currentTarget.innerHTML;
-  switch (category) {
-    case 'Ingrédients':
-      selectedComponents.push(name);
-      break;
-    case 'Appareils':
-      selectedDevices.push(name);
-      break;
-    case 'Ustensiles':
-      selectedUstensils.push(name);
-      break;
-  }
-  renderFilters();
-};
-const handleDeleteFilter = (e) => {
-  const element = e.currentTarget;
-  const category = element.dataset.cat;
-  const value = element.previousElementSibling.textContent;
-  switch (category) {
-    case 'Ingrédients':
-      selectedComponents = selectedComponents.filter((item) => item !== value);
-      break;
-    case 'Appareils':
-      selectedDevices = selectedDevices.filter((item) => item !== value);
-      break;
-    case 'Ustensiles':
-      selectedUstensils = selectedUstensils.filter((item) => item !== value);
-      break;
-  }
-  renderFilters();
-};
+let selectedUstensils = new GlobalArray();
+let selectableUstensils = new GlobalArray();
 
 async function init() {
   const { recipes } = await useFetch('./src/datas/recipes.json');
@@ -97,12 +33,24 @@ async function init() {
   devices = [...new Set(devices)];
   ustensils = [...new Set(ustensils)];
 
-  // Mise à jour du total des recettes
-  nbRecipes.innerHTML = `${recipes.length} recettes`;
   // Affichage des filtres
   renderFilters();
   // Affichage des plats
-  recipesCards.innerHTML = ListofRecipes(recipes);
+  listOfRecipes(recipes);
+  // Début des écoutes des points de recherches
+  startToListen();
 }
 
 init();
+
+export {
+  components,
+  devices,
+  selectableComponents,
+  selectableDevices,
+  selectableUstensils,
+  selectedComponents,
+  selectedDevices,
+  selectedUstensils,
+  ustensils,
+};
