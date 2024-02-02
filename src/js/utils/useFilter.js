@@ -3,16 +3,17 @@ import {
   selectableDevices,
   selectableUstensils,
   selectedComponents,
-  selectedDevices,
+  selectedDevice,
   selectedUstensils,
 } from '../pages/index.js';
-import { renderRecipes } from '../templates/recipes.js';
 import { Select } from '../templates/select.js';
-import { useFetch } from './useFetch.js';
-import { handleFilterSearch } from './useSearch.js';
+import {
+  filterRecipesListBySelection,
+  renderRecipesList,
+} from './useRecipes.js';
 
+// Eléments du DOM
 const filterSelects = document.querySelector('.filters');
-const { recipes } = await useFetch('./src/datas/recipes.json');
 
 const filterSelectableItems = (category, selectableItems, selectedItems) => {
   const notFilteredArray = selectableItems.data.filter(
@@ -30,38 +31,6 @@ const filterSelectableItems = (category, selectableItems, selectedItems) => {
       break;
   }
 };
-const newSelectableItems = (recipes) => {
-  let components = [];
-  let devices = [];
-  let ustensils = [];
-  recipes.map((r) => {
-    // liste des ingrédients
-    r.ingredients.map((i) => {
-      components.push(i.ingredient);
-    });
-    // liste des appareils
-    devices.push(r.appliance);
-    // liste des ustensiles
-    r.ustensils.map((u) => {
-      ustensils.push(u);
-    });
-  });
-  components = [...new Set(components)];
-  selectableComponents.data = components;
-  filterSelectableItems(
-    'Ingrédients',
-    selectableComponents,
-    selectedComponents
-  );
-  devices = [...new Set(devices)];
-  selectableDevices.data = devices;
-  filterSelectableItems('Appareils', selectableDevices, selectedDevices);
-  ustensils = [...new Set(ustensils)];
-  selectableUstensils.data = ustensils;
-  filterSelectableItems('Ustensiles', selectableUstensils, selectedUstensils);
-  renderFilters();
-  renderRecipes(recipes);
-};
 
 const renderFilters = () => {
   filterSelects.innerHTML = Select(
@@ -72,7 +41,7 @@ const renderFilters = () => {
   filterSelects.innerHTML += Select(
     'Appareils',
     selectableDevices,
-    selectedDevices
+    selectedDevice
   );
   filterSelects.innerHTML += Select(
     'Ustensiles',
@@ -84,11 +53,6 @@ const renderFilters = () => {
   btns.forEach((btn) => {
     btn.addEventListener('click', handleSelectBtn);
   });
-  // Activation de l'écoute de la barre de recherche avancée
-  const filterSearch = document.querySelectorAll('.filtersearch');
-  filterSearch.forEach((fs) =>
-    fs.addEventListener('input', handleFilterSearch)
-  );
   // Activation de la sélection des filtres
   const filters = document.querySelectorAll('.selectable');
   filters.forEach((filter) => {
@@ -101,6 +65,41 @@ const renderFilters = () => {
   });
 };
 
+const updateFiltersBtn = () => {
+  let recipesList = filterRecipesListBySelection();
+  let components = [];
+  let devices = [];
+  let ustensils = [];
+  recipesList.map((recipe) => {
+    // liste des ingrédients
+    recipe.ingredients.map((ingredient) => {
+      components.push(ingredient.ingredient);
+    });
+    // liste des appareils
+    devices.push(recipe.appliance);
+    // liste des ustensiles
+    recipe.ustensils.map((ustensil) => {
+      ustensils.push(ustensil);
+    });
+  });
+  components = [...new Set(components)];
+  selectableComponents.data = components;
+  filterSelectableItems(
+    'Ingrédients',
+    selectableComponents,
+    selectedComponents
+  );
+  devices = [...new Set(devices)];
+  selectableDevices.data = devices;
+  filterSelectableItems('Appareils', selectableDevices, selectedDevice);
+  ustensils = [...new Set(ustensils)];
+  selectableUstensils.data = ustensils;
+  filterSelectableItems('Ustensiles', selectableUstensils, selectedUstensils);
+  renderFilters();
+  renderRecipesList();
+};
+
+// Gestion d'ouverture/fermeture d'un bouton de filtre
 const handleSelectBtn = (e) => {
   const btnInfo = e.currentTarget.dataset.btn;
   const showList = document.querySelector(
@@ -108,6 +107,7 @@ const handleSelectBtn = (e) => {
   );
   showList.classList.toggle('hidden');
 };
+// Gestion de la sélection d'un filter
 const handleSelectFilter = (e) => {
   const element = e.currentTarget;
   const category = element.dataset.cat;
@@ -120,21 +120,17 @@ const handleSelectFilter = (e) => {
       selectedItems = selectedComponents.data;
       break;
     case 'Appareils':
-      selectedDevices.add(name);
-      selectedItems = selectedDevices.data;
+      selectedDevice.add(name);
+      selectedItems = selectedDevice.data;
       break;
     case 'Ustensiles':
       selectedUstensils.add(name);
       selectedItems = selectedUstensils.data;
       break;
   }
-  recipesList = recipes.filter((recipe) =>
-    selectedItems.every((selectedItem) =>
-      recipe.ustensils.includes(selectedItem)
-    )
-  );
-  newSelectableItems(recipesList);
+  updateFiltersBtn();
 };
+// Suppression d'un filtre sélectionné
 const handleDeleteFilter = (e) => {
   const element = e.currentTarget;
   const category = element.dataset.cat;
@@ -147,20 +143,15 @@ const handleDeleteFilter = (e) => {
       selectedItems = selectedComponents.data;
       break;
     case 'Appareils':
-      selectedDevices.remove(value);
-      selectedItems = selectedDevices.data;
+      selectedDevice.remove(value);
+      selectedItems = selectedDevice.data;
       break;
     case 'Ustensiles':
       selectedUstensils.remove(value);
       selectedItems = selectedUstensils.data;
       break;
   }
-  recipesList = recipes.filter((recipe) =>
-    selectedItems.every((selectedItem) =>
-      recipe.ustensils.includes(selectedItem)
-    )
-  );
-  newSelectableItems(recipesList);
+  updateFiltersBtn();
 };
 
-export { handleSelectFilter, newSelectableItems, renderFilters };
+export { handleSelectFilter, updateFiltersBtn };

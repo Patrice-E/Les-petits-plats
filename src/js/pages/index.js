@@ -1,23 +1,22 @@
 import GlobalArray from '../models/GlobalArray.js';
-import { renderRecipes } from '../templates/recipes.js';
 import { useFetch } from '../utils/useFetch.js';
-import { newSelectableItems } from '../utils/useFilter.js';
+import { updateFiltersBtn } from '../utils/useFilter.js';
 import { startToListen } from '../utils/useSearch.js';
 
 // Déclaration des variables
 let selectedComponents = new GlobalArray();
 let selectableComponents = new GlobalArray();
-let selectedDevices = new GlobalArray();
+let selectedDevice = new GlobalArray();
 let selectableDevices = new GlobalArray();
 let selectedUstensils = new GlobalArray();
 let selectableUstensils = new GlobalArray();
+const { recipes } = await useFetch('./src/datas/recipes.json');
 
 async function init() {
-  const { recipes } = await useFetch('./src/datas/recipes.json');
   // Création du tableau des filtres
   // Mise à jour des boutons des filtres
   // Mise à jour de l'affichage des recettes
-  newSelectableItems(recipes);
+  updateFiltersBtn(recipes);
   // Début des écoutes des points de recherches
   startToListen();
 }
@@ -25,10 +24,11 @@ async function init() {
 init();
 
 export {
+  recipes,
   selectableComponents,
   selectableDevices,
   selectableUstensils,
   selectedComponents,
-  selectedDevices,
+  selectedDevice,
   selectedUstensils,
 };

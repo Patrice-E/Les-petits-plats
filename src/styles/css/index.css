@@ -186,6 +186,7 @@ ul {
   position: relative;
 }
 .filter__btn button {
+  cursor: pointer;
   padding: 17px 16px;
   border: none;
   background-color: transparent;
