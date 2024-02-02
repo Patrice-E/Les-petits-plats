@@ -112,20 +112,15 @@ const handleSelectFilter = (e) => {
   const element = e.currentTarget;
   const category = element.dataset.cat;
   const name = element.innerHTML;
-  let selectedItems = [];
-  let recipesList = {};
   switch (category) {
     case 'Ingrédients':
       selectedComponents.add(name);
-      selectedItems = selectedComponents.data;
       break;
     case 'Appareils':
       selectedDevice.add(name);
-      selectedItems = selectedDevice.data;
       break;
     case 'Ustensiles':
       selectedUstensils.add(name);
-      selectedItems = selectedUstensils.data;
       break;
   }
   updateFiltersBtn();
@@ -135,8 +130,6 @@ const handleDeleteFilter = (e) => {
   const element = e.currentTarget;
   const category = element.dataset.cat;
   const value = element.previousElementSibling.textContent;
-  let selectedItems = [];
-  let recipesList = {};
   switch (category) {
     case 'Ingrédients':
       selectedComponents.remove(value);
