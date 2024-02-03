@@ -3,14 +3,32 @@ import {
   selectableDevices,
   selectableUstensils,
 } from '../pages/index.js';
+import { renderRecipes } from '../templates/recipes.js';
 import { formatListFilters } from '../templates/select.js';
 import { handleSelectFilter } from './useFilter.js';
+import { filterRecipesListBySelection } from './useRecipes.js';
 
 const mainSearch = document.querySelector('#mainsearch');
 
+const filterRecipesListByMainSearch = (mainSearchValue) => {
+  let currentFilteredRecipes = filterRecipesListBySelection();
+  currentFilteredRecipes = currentFilteredRecipes.filter((recipe) => {
+    return (
+      recipe.name.includes(mainSearchValue) ||
+      recipe.ingredients.some((ingredient) => {
+        return ingredient.ingredient.includes(mainSearchValue);
+      }) ||
+      recipe.description.includes(mainSearchValue)
+    );
+  });
+  renderRecipes(currentFilteredRecipes);
+};
+
 const searchByMainInput = (e) => {
-  const target = e.currentTarget;
-  console.log(target);
+  const searchValue = e.currentTarget.value;
+  if (searchValue.length >= 3) {
+    filterRecipesListByMainSearch(searchValue);
+  }
 };
 
 const searchBySelectInput = (e) => {
