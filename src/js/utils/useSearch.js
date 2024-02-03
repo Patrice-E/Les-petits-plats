@@ -3,26 +3,17 @@ import {
   selectableDevices,
   selectableUstensils,
 } from '../pages/index.js';
-import { useFetch } from './useFetch.js';
+import { formatListFilters } from '../templates/select.js';
 import { handleSelectFilter } from './useFilter.js';
 
 const mainSearch = document.querySelector('#mainsearch');
-const { recipes } = await useFetch('./src/datas/recipes.json');
 
-const handleMainSearch = (e) => {
+const searchByMainInput = (e) => {
   const target = e.currentTarget;
   console.log(target);
 };
 
-const formatListFilters = (list, cat) => {
-  let listFilters = '';
-  list.map((item) => {
-    listFilters += `<li class="selectable" data-cat=${cat}>${item}</li>`;
-  });
-  return listFilters;
-};
-
-const handleFilterSearch = (e) => {
+const searchBySelectInput = (e) => {
   const element = e.currentTarget;
   const value = element.value;
   const category = element.name;
@@ -53,7 +44,7 @@ const handleFilterSearch = (e) => {
 };
 
 const startToListen = () => {
-  mainSearch.addEventListener('input', handleMainSearch);
+  mainSearch.addEventListener('input', searchByMainInput);
 };
 
-export { handleFilterSearch, startToListen };
+export { searchBySelectInput, startToListen };

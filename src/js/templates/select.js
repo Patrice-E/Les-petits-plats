@@ -1,12 +1,17 @@
+const formatListFilters = (list, cat) => {
+  let listFilters = '';
+  list.map((item) => {
+    listFilters += `<li class="selectable" data-cat=${cat}>${item}</li>`;
+  });
+  return listFilters;
+};
+
 const Select = (title, arrayOfItems, arrayOfSelectedItems) => {
   let listSelected = '';
   arrayOfSelectedItems.data.map((item) => {
     listSelected += `<li class="selected">${item}</li>`;
   });
-  let listFilters = '';
-  arrayOfItems.data.map((item) => {
-    listFilters += `<li class="selectable" data-cat=${title}>${item}</li>`;
-  });
+  let listFilters = formatListFilters(arrayOfItems.data, title);
   let selected = '';
   arrayOfSelectedItems.data.map((selectItem) => {
     selected += `
@@ -48,4 +53,4 @@ const Select = (title, arrayOfItems, arrayOfSelectedItems) => {
   `;
 };
 
-export { Select };
+export { Select, formatListFilters };

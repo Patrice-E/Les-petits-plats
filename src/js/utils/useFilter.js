@@ -11,6 +11,7 @@ import {
   filterRecipesListBySelection,
   renderRecipesList,
 } from './useRecipes.js';
+import { searchBySelectInput } from './useSearch.js';
 
 // Eléments du DOM
 const filterSelects = document.querySelector('.filters');
@@ -53,6 +54,11 @@ const renderFilters = () => {
   btns.forEach((btn) => {
     btn.addEventListener('click', handleSelectBtn);
   });
+  // Activation de l'écoute de la barre de recherche avancée
+  const filterSearch = document.querySelectorAll('.filtersearch');
+  filterSearch.forEach((fs) =>
+    fs.addEventListener('input', searchBySelectInput)
+  );
   // Activation de la sélection des filtres
   const filters = document.querySelectorAll('.selectable');
   filters.forEach((filter) => {
@@ -133,15 +139,12 @@ const handleDeleteFilter = (e) => {
   switch (category) {
     case 'Ingrédients':
       selectedComponents.remove(value);
-      selectedItems = selectedComponents.data;
       break;
     case 'Appareils':
       selectedDevice.remove(value);
-      selectedItems = selectedDevice.data;
       break;
     case 'Ustensiles':
       selectedUstensils.remove(value);
-      selectedItems = selectedUstensils.data;
       break;
   }
   updateFiltersBtn();
