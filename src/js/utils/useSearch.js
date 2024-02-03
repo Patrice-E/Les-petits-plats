@@ -12,16 +12,32 @@ const mainSearch = document.querySelector('#mainsearch');
 
 const filterRecipesListByMainSearch = (mainSearchValue) => {
   let currentFilteredRecipes = filterRecipesListBySelection();
-  currentFilteredRecipes = currentFilteredRecipes.filter((recipe) => {
-    return (
-      recipe.name.includes(mainSearchValue) ||
-      recipe.ingredients.some((ingredient) => {
-        return ingredient.ingredient.includes(mainSearchValue);
-      }) ||
-      recipe.description.includes(mainSearchValue)
-    );
-  });
-  renderRecipes(currentFilteredRecipes);
+  let filteredRecipes = [];
+
+  const containsString = (str, substring) => {
+    return str.indexOf(substring) !== -1;
+  };
+  const containsIngredient = (ingredients, mainSearchValue) => {
+    for (let j = 0; j < ingredients.length; j++) {
+      if (containsString(ingredients[j].ingredient, mainSearchValue)) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  for (let i = 0; i < currentFilteredRecipes.length; i++) {
+    let recipe = currentFilteredRecipes[i];
+    if (
+      containsString(recipe.name, mainSearchValue) ||
+      containsIngredient(recipe.ingredients, mainSearchValue) ||
+      containsString(recipe.description, mainSearchValue)
+    ) {
+      filteredRecipes.push(recipe);
+    }
+  }
+
+  renderRecipes(filteredRecipes);
 };
 
 const searchByMainInput = (e) => {
