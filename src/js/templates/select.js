@@ -1,7 +1,13 @@
+const capitalizeTxt = (text) => {
+  return text[0].toUpperCase() + text.slice(1);
+};
+
 const formatListFilters = (list, cat) => {
   let listFilters = '';
   list.map((item) => {
-    listFilters += `<li class="selectable" data-cat=${cat}>${item}</li>`;
+    listFilters += `<li class="selectable" data-cat=${cat}>${capitalizeTxt(
+      item
+    )}</li>`;
   });
   return listFilters;
 };
@@ -9,7 +15,7 @@ const formatListFilters = (list, cat) => {
 const Select = (title, arrayOfItems, arrayOfSelectedItems) => {
   let listSelected = '';
   arrayOfSelectedItems.data.map((item) => {
-    listSelected += `<li class="selected">${item}</li>`;
+    listSelected += `<li class="selected">${capitalizeTxt(item)}</li>`;
   });
   let listFilters = formatListFilters(arrayOfItems.data, title);
   let selected = '';

@@ -18,7 +18,7 @@ const filterSelects = document.querySelector('.filters');
 
 const filterSelectableItems = (category, selectableItems, selectedItems) => {
   const notFilteredArray = selectableItems.data.filter(
-    (items) => !selectedItems.data.includes(items)
+    (items) => !selectedItems.data.includes(items.toLowerCase())
   );
   switch (category) {
     case 'Ingrédients':
@@ -71,10 +71,6 @@ const renderFilters = () => {
   });
 };
 
-const capitalizeTxt = (text) => {
-  return text[0].toUpperCase() + text.slice(1);
-};
-
 const updateFiltersBtn = () => {
   let recipesList = filterRecipesListBySelection();
   let components = [];
@@ -93,7 +89,6 @@ const updateFiltersBtn = () => {
     });
   });
   components = [...new Set(components)]; // Gestion des doublons
-  components.map((component) => capitalizeTxt(component));
   selectableComponents.data = components;
   filterSelectableItems(
     'Ingrédients',
@@ -101,11 +96,9 @@ const updateFiltersBtn = () => {
     selectedComponents
   );
   devices = [...new Set(devices)]; // Gestion des doublons
-  devices.map((device) => capitalizeTxt(device));
   selectableDevices.data = devices;
   filterSelectableItems('Appareils', selectableDevices, selectedDevice);
   ustensils = [...new Set(ustensils)]; // Gestion des doublons
-  ustensils.map((ustensil) => capitalizeTxt(ustensil));
   selectableUstensils.data = ustensils;
   filterSelectableItems('Ustensiles', selectableUstensils, selectedUstensils);
   renderFilters();
@@ -124,7 +117,7 @@ const handleSelectBtn = (e) => {
 const handleSelectFilter = (e) => {
   const element = e.currentTarget;
   const category = element.dataset.cat;
-  const name = element.innerHTML;
+  const name = element.innerHTML.toLowerCase();
   switch (category) {
     case 'Ingrédients':
       selectedComponents.add(name);
