@@ -8,4 +8,4 @@ async function useFetch(url) {
   }
 }
 
-export { useFetch };
+export default useFetch;

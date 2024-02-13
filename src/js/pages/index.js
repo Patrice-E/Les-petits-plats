@@ -1,5 +1,5 @@
 import GlobalArray from '../models/GlobalArray.js';
-import { useFetch } from '../utils/useFetch.js';
+import useFetch from '../utils/useFetch.js';
 import { updateFiltersBtn } from '../utils/useFilter.js';
 import { startToListen } from '../utils/useSearch.js';
 
