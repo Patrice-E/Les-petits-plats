@@ -71,6 +71,10 @@ const renderFilters = () => {
   });
 };
 
+const capitalizeTxt = (text) => {
+  return text[0].toUpperCase() + text.slice(1);
+};
+
 const updateFiltersBtn = () => {
   let recipesList = filterRecipesListBySelection();
   let components = [];
@@ -79,15 +83,16 @@ const updateFiltersBtn = () => {
   recipesList.map((recipe) => {
     // liste des ingrédients
     recipe.ingredients.map((ingredient) => {
-      components.push(ingredient.ingredient);
+      components.push(ingredient.ingredient.toLowerCase());
     });
     // liste des appareils
-    devices.push(recipe.appliance);
+    devices.push(recipe.appliance.toLowerCase());
     // liste des ustensiles
     recipe.ustensils.map((ustensil) => {
-      ustensils.push(ustensil);
+      ustensils.push(ustensil.toLowerCase());
     });
   });
+  components.map((component) => capitalizeTxt(component));
   components = [...new Set(components)];
   selectableComponents.data = components;
   filterSelectableItems(
@@ -95,9 +100,11 @@ const updateFiltersBtn = () => {
     selectableComponents,
     selectedComponents
   );
+  devices.map((device) => capitalizeTxt(device));
   devices = [...new Set(devices)];
   selectableDevices.data = devices;
   filterSelectableItems('Appareils', selectableDevices, selectedDevice);
+  ustensils.map((ustensil) => capitalizeTxt(ustensil));
   ustensils = [...new Set(ustensils)];
   selectableUstensils.data = ustensils;
   filterSelectableItems('Ustensiles', selectableUstensils, selectedUstensils);
