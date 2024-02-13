@@ -237,6 +237,25 @@ ul {
 }
 .filter__btn .showlist__items .selected {
   background: #ffd15b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.filter__btn .showlist__items .selected button {
+  width: 17px;
+  height: 17px;
+  margin-right: 20px;
+  padding: 0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.filter__btn .showlist__items .selected:hover {
+  font-weight: 700;
+}
+.filter__btn .showlist__items .selected:hover button {
+  background-color: black;
 }
 .filter__selected {
   display: flex;

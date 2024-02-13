@@ -6,7 +6,10 @@ import {
 import { renderRecipes } from '../templates/recipes.js';
 import { formatListFilters } from '../templates/select.js';
 import { handleSelectFilter } from './useFilter.js';
-import { filterRecipesListBySelection } from './useRecipes.js';
+import {
+  filterRecipesListBySelection,
+  renderRecipesList,
+} from './useRecipes.js';
 
 const mainSearch = document.querySelector('#mainsearch');
 
@@ -41,8 +44,10 @@ const filterRecipesListByMainSearch = (mainSearchValue) => {
 };
 
 const searchByMainInput = (e) => {
-  const searchValue = e.currentTarget.value;
-  if (searchValue.length >= 3) {
+  let searchValue = e.target.value;
+  if (searchValue.length < 3) {
+    renderRecipesList(filterRecipesListBySelection());
+  } else {
     filterRecipesListByMainSearch(searchValue);
   }
 };

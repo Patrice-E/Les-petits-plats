@@ -15,7 +15,13 @@ const formatListFilters = (list, cat) => {
 const Select = (title, arrayOfItems, arrayOfSelectedItems) => {
   let listSelected = '';
   arrayOfSelectedItems.data.map((item) => {
-    listSelected += `<li class="selected">${capitalizeTxt(item)}</li>`;
+    listSelected += `
+      <div class="selected">
+        <li>${capitalizeTxt(item)}</li>
+        <button type=button>
+          <img src="./src/assets/icons/cross.svg" alt=""/>
+        </button>
+      </div>`;
   });
   let listFilters = formatListFilters(arrayOfItems.data, title);
   let selected = '';
@@ -45,7 +51,7 @@ const Select = (title, arrayOfItems, arrayOfSelectedItems) => {
               <img src="./src/assets/icons/arrowup.svg" alt="" />
             </span>
           </button>
-          <input type="search" name=${title} id=${title} class="filtersearch">
+          <input type="text" name=${title} id=${title} class="filtersearch">
           <div class="showlist__items">
             <ul>${listSelected}</ul>
             <ul class= "selectable-items">${listFilters}</ul>
