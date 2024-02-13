@@ -51,7 +51,13 @@ const Select = (title, arrayOfItems, arrayOfSelectedItems) => {
               <img src="./src/assets/icons/arrowup.svg" alt="" />
             </span>
           </button>
-          <input type="text" name=${title} id=${title} class="filtersearch">
+          <div class="searchbar">
+            <input type="text" name=${title} id=${title} class="filtersearch">
+            <button type="button" class="hidden">
+              <img src="./src/assets/icons/selectcross.svg" alt="" />
+            </button>
+            <img src="./src/assets/icons/search.svg" alt="" />
+          </div>
           <div class="showlist__items">
             <ul>${listSelected}</ul>
             <ul class= "selectable-items">${listFilters}</ul>

@@ -59,13 +59,24 @@
         display: none;
       }
 
-      input {
+      .searchbar {
         margin: 0 16px 17px;
-        min-height: 36px;
-        background-image: url('../../../../src/assets/icons/search.svg');
-        background-repeat: no-repeat;
-        background-position: 95% 50%;
         border: 1px solid $gray;
+        display: flex;
+        align-items: center;
+
+        button {
+          padding: 0 10px;
+          &.hidden {
+            visibility: hidden;
+          }
+        }
+      }
+
+      input {
+        min-height: 36px;
+        max-width: 110px;
+        border: none;
         &:focus {
           outline: none;
         }
