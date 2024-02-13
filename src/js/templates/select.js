@@ -18,7 +18,7 @@ const Select = (title, arrayOfItems, arrayOfSelectedItems) => {
     listSelected += `
       <div class="selected">
         <li>${capitalizeTxt(item)}</li>
-        <button type=button>
+        <button type=button class="btn-selected" data-cat=${title}>
           <img src="./src/assets/icons/cross.svg" alt=""/>
         </button>
       </div>`;
@@ -28,7 +28,7 @@ const Select = (title, arrayOfItems, arrayOfSelectedItems) => {
   arrayOfSelectedItems.data.map((selectItem) => {
     selected += `
       <li>
-        <span>${selectItem}</span>
+        <span>${capitalizeTxt(selectItem)}</span>
         <button class="btn-selected" data-cat=${title}>
           <img src="./src/assets/icons/cancel.svg" alt=""/>
         </button>

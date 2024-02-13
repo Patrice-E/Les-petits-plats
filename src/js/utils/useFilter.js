@@ -135,7 +135,7 @@ const handleSelectFilter = (e) => {
 const handleDeleteFilter = (e) => {
   const element = e.currentTarget;
   const category = element.dataset.cat;
-  const value = element.previousElementSibling.textContent;
+  const value = element.previousElementSibling.textContent.toLowerCase();
   switch (category) {
     case 'Ingrédients':
       selectedComponents.remove(value);
