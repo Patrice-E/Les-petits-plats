@@ -4,9 +4,12 @@ const recipesCards = document.querySelector('.cards');
 const renderRecipes = (recipes) => {
   // Mise à jour du total des recettes dans le DOM
   const nbRecipes = recipes.length;
-  if (nbRecipes) {
-    nbTotalRecipes.innerHTML = `${recipes.length} recettes`;
-  } else {
+  let txtRecipes = 'recettes';
+  if (nbRecipes <= 1) {
+    txtRecipes = 'recette';
+  }
+  nbTotalRecipes.innerHTML = `${recipes.length} recettes`;
+  if (!nbRecipes) {
     recipesCards.innerHTML = `
       <p>Aucune recette ne contient ‘XXX ’ vous pouvez chercher «
 tarte aux pommes », « poisson », etc.</p>
