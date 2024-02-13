@@ -92,20 +92,20 @@ const updateFiltersBtn = () => {
       ustensils.push(ustensil.toLowerCase());
     });
   });
+  components = [...new Set(components)]; // Gestion des doublons
   components.map((component) => capitalizeTxt(component));
-  components = [...new Set(components)];
   selectableComponents.data = components;
   filterSelectableItems(
     'Ingrédients',
     selectableComponents,
     selectedComponents
   );
+  devices = [...new Set(devices)]; // Gestion des doublons
   devices.map((device) => capitalizeTxt(device));
-  devices = [...new Set(devices)];
   selectableDevices.data = devices;
   filterSelectableItems('Appareils', selectableDevices, selectedDevice);
+  ustensils = [...new Set(ustensils)]; // Gestion des doublons
   ustensils.map((ustensil) => capitalizeTxt(ustensil));
-  ustensils = [...new Set(ustensils)];
   selectableUstensils.data = ustensils;
   filterSelectableItems('Ustensiles', selectableUstensils, selectedUstensils);
   renderFilters();
