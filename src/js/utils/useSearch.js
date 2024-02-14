@@ -32,7 +32,6 @@ const searchByMainInput = (e) => {
   let searchValue = e.currentTarget.value;
   // Affiche ou pas la croix pour effacer le contenu
   const onClick = () => {
-    console.log('click');
     mainSearch.value = '';
     renderRecipesList(filterRecipesListBySelection());
   };
@@ -53,11 +52,9 @@ const searchByMainInput = (e) => {
 
 const searchBySelectInput = (e) => {
   const element = e.currentTarget;
-  console.log(element);
   const value = element.value;
   // Affiche ou pas la croix pour effacer le contenu
   const cross = element.nextElementSibling;
-  console.log(cross);
   if (!value) {
     cross.classList.add('hidden');
   } else {

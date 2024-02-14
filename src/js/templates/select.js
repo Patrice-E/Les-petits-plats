@@ -51,7 +51,7 @@ const Select = (title, arrayOfItems, arrayOfSelectedItems) => {
           </button>
           <div class="searchbar">
             <input type="text" name=${title} id=${title} class="filtersearch">
-            <button type="button" class="hidden">
+            <button type="button" class="cancelSelectBtn hidden" data-cat=${title}>
               <img src="./src/assets/icons/selectcross.svg" alt="" />
             </button>
             <img src="./src/assets/icons/search.svg" alt="" />

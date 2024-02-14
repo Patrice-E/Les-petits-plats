@@ -6,7 +6,7 @@ import {
   selectedDevice,
   selectedUstensils,
 } from '../pages/index.js';
-import { Select } from '../templates/select.js';
+import { Select, formatListFilters } from '../templates/select.js';
 import {
   filterRecipesListBySelection,
   renderRecipesList,
@@ -59,6 +59,31 @@ const renderFilters = () => {
   filterSearch.forEach((fs) =>
     fs.addEventListener('input', searchBySelectInput)
   );
+  // Activation du bouton cancel de la barre de recherche avancée
+  const cancelSelectBtns = document.querySelectorAll('.cancelSelectBtn');
+  cancelSelectBtns.forEach((button) => {
+    button.addEventListener('click', (e) => {
+      const input = e.currentTarget.previousElementSibling;
+      input.value = '';
+      const category = e.currentTarget.dataset.cat;
+      const selectableList = document.querySelector(
+        `.showlist[data-showlist="${category}"] .selectable-items`
+      );
+      let selectableItems = [];
+      switch (category) {
+        case 'Ingrédients':
+          selectableItems = selectableComponents.data;
+          break;
+        case 'Appareils':
+          selectableItems = selectableDevices.data;
+          break;
+        case 'Ustensiles':
+          selectableItems = selectableUstensils.data;
+          break;
+      }
+      selectableList.innerHTML = formatListFilters(selectableItems, category);
+    });
+  });
   // Activation de la sélection des filtres
   const filters = document.querySelectorAll('.selectable');
   filters.forEach((filter) => {
