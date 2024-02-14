@@ -29,12 +29,19 @@ const filterRecipesListByMainSearch = (mainSearchValue) => {
 };
 
 const searchByMainInput = (e) => {
-  const searchValue = e.currentTarget.value;
+  let searchValue = e.currentTarget.value;
   // Affiche ou pas la croix pour effacer le contenu
+  const onClick = () => {
+    console.log('click');
+    mainSearch.value = '';
+    renderRecipesList(filterRecipesListBySelection());
+  };
   if (!searchValue) {
     mainCancel.classList.add('hidden');
+    mainCancel.removeEventListener('click', onClick);
   } else {
     mainCancel.classList.remove('hidden');
+    mainCancel.addEventListener('click', onClick);
   }
   // Affiche la liste des recettes correspondantes
   if (searchValue.length < 3) {
