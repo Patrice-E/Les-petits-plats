@@ -26,7 +26,9 @@ const filterRecipesListBySelection = (recipesList = recipes) => {
   if (selectedUstensils.data.length) {
     filteredRecipesList = filteredRecipesList.filter((recipe) => {
       return selectedUstensils.data.some((selectedUstensil) => {
-        return recipe.ustensils.toLowerCase().includes(selectedUstensil);
+        return recipe.ustensils
+          .map((ustensil) => ustensil.toLowerCase())
+          .includes(selectedUstensil);
       });
     });
   }
