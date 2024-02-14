@@ -1,7 +1,11 @@
+import useCapitalize from '../utils/useCapitalize.js';
+
 const formatListFilters = (list, cat) => {
   let listFilters = '';
   list.map((item) => {
-    listFilters += `<li class="selectable" data-cat=${cat}>${item}</li>`;
+    listFilters += `<li class="selectable" data-cat=${cat}>${useCapitalize(
+      item
+    )}</li>`;
   });
   return listFilters;
 };
@@ -9,14 +13,20 @@ const formatListFilters = (list, cat) => {
 const Select = (title, arrayOfItems, arrayOfSelectedItems) => {
   let listSelected = '';
   arrayOfSelectedItems.data.map((item) => {
-    listSelected += `<li class="selected">${item}</li>`;
+    listSelected += `
+      <div class="selected">
+        <li>${useCapitalize(item)}</li>
+        <button type="button" class="btn-selected" data-cat=${title}>
+          <img src="./src/assets/icons/cross.svg" alt=""/>
+        </button>
+      </div>`;
   });
   let listFilters = formatListFilters(arrayOfItems.data, title);
   let selected = '';
   arrayOfSelectedItems.data.map((selectItem) => {
     selected += `
       <li>
-        <span>${selectItem}</span>
+        <span>${useCapitalize(selectItem)}</span>
         <button class="btn-selected" data-cat=${title}>
           <img src="./src/assets/icons/cancel.svg" alt=""/>
         </button>

@@ -18,7 +18,7 @@ const filterSelects = document.querySelector('.filters');
 
 const filterSelectableItems = (category, selectableItems, selectedItems) => {
   const notFilteredArray = selectableItems.data.filter(
-    (items) => !selectedItems.data.includes(items)
+    (items) => !selectedItems.data.includes(items.toLowerCase())
   );
   switch (category) {
     case 'Ingrédients':
@@ -79,13 +79,13 @@ const updateFiltersBtn = () => {
   recipesList.map((recipe) => {
     // liste des ingrédients
     recipe.ingredients.map((ingredient) => {
-      components.push(ingredient.ingredient);
+      components.push(ingredient.ingredient.toLowerCase());
     });
     // liste des appareils
-    devices.push(recipe.appliance);
+    devices.push(recipe.appliance.toLowerCase());
     // liste des ustensiles
     recipe.ustensils.map((ustensil) => {
-      ustensils.push(ustensil);
+      ustensils.push(ustensil.toLowerCase());
     });
   });
   components = [...new Set(components)];
@@ -117,16 +117,16 @@ const handleSelectBtn = (e) => {
 const handleSelectFilter = (e) => {
   const element = e.currentTarget;
   const category = element.dataset.cat;
-  const name = element.innerHTML;
+  const name = element.innerHTML.toLowerCase();
   switch (category) {
     case 'Ingrédients':
-      selectedComponents.add(name);
+      selectedComponents.add(name.toLowerCase());
       break;
     case 'Appareils':
-      selectedDevice.add(name);
+      selectedDevice.add(name.toLowerCase());
       break;
     case 'Ustensiles':
-      selectedUstensils.add(name);
+      selectedUstensils.add(name.toLowerCase());
       break;
   }
   updateFiltersBtn();
@@ -135,7 +135,7 @@ const handleSelectFilter = (e) => {
 const handleDeleteFilter = (e) => {
   const element = e.currentTarget;
   const category = element.dataset.cat;
-  const value = element.previousElementSibling.textContent;
+  const value = element.previousElementSibling.textContent.toLowerCase();
   switch (category) {
     case 'Ingrédients':
       selectedComponents.remove(value);
