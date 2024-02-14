@@ -8,7 +8,7 @@ const renderRecipes = (recipes) => {
   if (nbRecipes <= 1) {
     txtRecipes = 'recette';
   }
-  nbTotalRecipes.innerHTML = `${recipes.length} recettes`;
+  nbTotalRecipes.innerHTML = `${recipes.length} ${txtRecipes}`;
   if (!nbRecipes) {
     recipesCards.innerHTML = `
       <p>Aucune recette ne contient ‘XXX ’ vous pouvez chercher «

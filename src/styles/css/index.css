@@ -36,6 +36,10 @@ ul {
   position: relative;
 }
 
+.hidden {
+  display: none;
+}
+
 .cards {
   display: flex;
   justify-content: space-between;
@@ -146,6 +150,10 @@ ul {
 .header .searchbar input:focus {
   outline: none;
 }
+.header .searchbar button {
+  border: none;
+  background-color: transparent;
+}
 .header .searchbar__glass {
   width: 51px;
   height: 52px;
@@ -211,15 +219,24 @@ ul {
 .filter__btn .showlist.hidden {
   display: none;
 }
-.filter__btn .showlist input {
+.filter__btn .showlist .searchbar {
   margin: 0 16px 17px;
-  min-height: 36px;
-  background-image: url("../../../../src/assets/icons/search.svg");
-  background-repeat: no-repeat;
-  background-position: 95% 50%;
   border: 1px solid #c6c6c6;
+  display: flex;
+  align-items: center;
 }
-.filter__btn .showlist input:focus {
+.filter__btn .showlist .searchbar button {
+  padding: 0 10px;
+}
+.filter__btn .showlist .searchbar button.hidden {
+  visibility: hidden;
+}
+.filter__btn .showlist .searchbar input {
+  min-height: 36px;
+  max-width: 110px;
+  border: none;
+}
+.filter__btn .showlist .searchbar input:focus {
   outline: none;
 }
 .filter__btn .showlist__items {
